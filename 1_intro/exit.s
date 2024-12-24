@@ -13,5 +13,5 @@
 .globl _start
 
 _start:    
-    mov $12, %ecx       # move return value
+    movl $12, %ecx      # move return value
     call ExitProcess    # the exit command
