@@ -4,8 +4,6 @@
 #            4 is 4 * 3 * 2 * 1, or 24. and so on.
 #
 # This program shows how to call a function recursively.
-.extern _ExitProcess@4
-
 .section .data
 
 # This program has no glabal data
@@ -24,8 +22,8 @@ _start:
     movl  %eax, %ebx    # factorial returns the answer in %eax, but
                         # we want it in %ebx to send it as our exit
                         # status
-    pushl %ebx          # return code
-    call _ExitProcess@4 # the exit command
+    movl $1, %eax       # 1 is exit() syscall
+    int  $0x80
 
 factorial:
     pushl %ebp          # standard function stuff - we have to

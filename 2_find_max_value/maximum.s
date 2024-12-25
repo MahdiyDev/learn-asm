@@ -17,30 +17,30 @@
 .section .data
 
 data_items:                      # These are the data items
-    .quad 3, 67, 34, 222, 32, 100, 11, 23, 54, 0
+    .long 3, 67, 34, 222, 32, 100, 11, 23, 54, 0
 
 .section .text
 
 .globl _start
 
 _start:
-    leaq data_items(%rip), %rdi  # load the address of data_items into %rdi 
-    movq (%rdi), %rax            # move 0 into the index register    
-    movq %rax, %rbx              # since this is the first item, %rax is
-                                 # the biggest
+    movl $0, %edi                   # move 0 into the index register
+    movl data_items(,%edi, 4), %eax # load the the first byte of data
+    movl %eax, %ebx                 # since this is the first item, %rax is
+                                    # the biggest
 
 start_loop:
-    cmpq $0, %rax                # check to see if we've hit the end
-    je   loop_exit               # jump if equal to zero
-    addq $8, %rdi                # move to the next element (each element is 8 bytes)
-    movq (%rdi), %rax            # load next item
-    cmpq %rbx, %rax              # compare values
-    jle  start_loop              # jump to loop begging if the new
-                                 # one isn't bigger
+    cmpl $0, %eax                   # check to see if we've hit the end
+    je   loop_exit                  # jump if equal to zero
+    incl %edi                       # increment index
+    movl data_items(,%edi, 4), %eax # load next item
+    cmpl %ebx, %eax                 # compare values
+    jle  start_loop                 # jump to loop begging if the new
+                                    # one isn't bigger
 
-    movq %rax, %rbx              # move the value as the largest
+    movl %eax, %ebx                 # move the value as the largest
     jmp  start_loop
 
 loop_exit:
-    movq %rbx, %rcx              # return value
-    call ExitProcess             # the exit command
+    movl $1, %eax                   # 1 is exit() syscall
+    int  $0x80

@@ -26,7 +26,7 @@ _start:
     addl  $8, %esp    # move the stack pointer back
 
     popl  %ebx        # the second answer is already
-                      # in %eax. We saved the 
+                      # in %eax. We saved the
                       # first answer onto the stack
                       # so now we can just pop it
                       # out into %ebx
@@ -34,8 +34,8 @@ _start:
     addl %eax, %ebx   # add them together
                       # the result is in %ebx
 
-    pushl %ebx           # return code
-    call _ExitProcess@4  # the exit command
+    movl $1, %eax     # 1 is exit() syscall
+    int  $0x80
 
 # PURPOSE: This function is used to compute
 #          the value of a number raised to
