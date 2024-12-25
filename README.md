@@ -3,8 +3,8 @@
 ## Examples
 
 1. Simple assembly program. Exits with given value. [see](1_intro)
-2. Find maximum value from array. Exits with maximum value. [see](find_max_value)
-3. Function and Stack. Compute the value of a number raised to a power and exits with result. [see](functions_and_stack)
+2. Find maximum value from array. Exits with maximum value. [see](2_find_max_value)
+3. Function and Stack. Compute the value of a number raised to a power and exits with result. [see](3_functions_and_stack)
 
 ### Compile
 
