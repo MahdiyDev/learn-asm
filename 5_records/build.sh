@@ -16,3 +16,7 @@ as read-records.s -o read-records.o --32
 ld read-record.o count-chars.o \
    write-newline.o read-records.o -o read-records.out -melf_i386
 
+# Modify record
+as add-year.s -o add-year.o --32
+ld add-year.o read-record.o \
+   write-record.o -o add-year.out -melf_i386
