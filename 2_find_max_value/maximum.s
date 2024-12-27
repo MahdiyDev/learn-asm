@@ -12,8 +12,6 @@
 # data_items - contains the item data. A 0 is used
 #              to terminate the data
 
-.extern ExitProcess
-
 .section .data
 
 data_items:                      # These are the data items

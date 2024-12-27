@@ -12,7 +12,7 @@
 #                c) write the memory buffer to output file
 .section .data
 
-#######CONSTANTS#######
+####### CONSTANTS #######
 
 # system call numbers
 .equ SYS_OPEN,  5
@@ -87,7 +87,7 @@ open_fd_out:
 store_fd_out:
     mov   %eax, ST_FD_OUT(%ebp)     # save the given file descriptor
 
-### BEGIN MAIN LOOP###
+### BEGIN MAIN LOOP ###
 read_loop_begin:
 ### READ IN A BLOCK FROM THE INPUT FILE ###
     movl $SYS_READ, %eax
@@ -174,7 +174,7 @@ convert_to_upper:
     movl ST_BUFFER(%ebp), %eax
     movl ST_BUFFER_LEN(%ebp), %ebx
     movl $0, %edi
-# if a buffer with zero length was given
+# If a buffer with zero length was given
 # to us, just leave
     cmpl $0, %ebx
     je   end_convert_loop
@@ -201,3 +201,4 @@ end_convert_loop:
     movl %ebp, %esp
     popl %ebp
     ret
+

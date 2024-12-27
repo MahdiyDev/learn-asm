@@ -4,7 +4,6 @@
 #
 # Everything in the main program is stored in registers,
 # so the data section doesn't have anything.
-.extern _ExitProcess@4
 
 .section .data
 
